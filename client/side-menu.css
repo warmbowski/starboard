@@ -89,7 +89,7 @@ appears on the left side of the page.
 	left: 0;
 	bottom: 0;
 	z-index: 1000; /* so the menu or its navicon stays above all content */
-	background: #191818;
+	background: #4D5250;
 	overflow-y: auto;
 	-webkit-overflow-scrolling: touch;
 }
@@ -129,9 +129,11 @@ appears on the left side of the page.
     /*
     This styles the selected menu item `<li>`.
     */
-	#menu .pure-menu-selected,
+	#menu .pure-menu-selected {
+		background: GoldenRod;
+	}
 	#menu .pure-menu-heading {
-		background: #1f8dd6;
+		background: LightSteelBlue;
 	}
         /*
         This styles a link within a selected menu item `<li>`.
