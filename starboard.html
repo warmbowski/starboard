@@ -5,13 +5,16 @@
 
 <body>
 
-<div id="layout">
+<div id="layout" class="pure-g">
+	<div id="header" class="pure-u-1">
 	<!-- Menu toggle -->
 	<a href="#menu" id="menuLink" class="menu-link">
 		<!-- Hamburger icon -->
 		<span></span>
 	</a>
-	<div id="menu">
+		<div id="login" class= "pure-u-1" style="text-align: right ">{{> loginButtons}}</div>
+	</div>
+	<div id="menu" class="pure-u">
 		<div class="pure-menu pure-menu-open">
 			<ul>
 				<li class="pure-menu-heading">Bookmarks</li>
@@ -22,15 +25,15 @@
 				<li class="pure-menu-heading">Locations</li>
 				{{> LocationsList}}
 				<li><br /></li>
-				<li class="pure-menu-heading">Tagged</li>
-				<li><a href="#" class="people-tags">Starred</a></li>
-				<li><a href="#" class="people-tags">Buddies</a></li>
+				<li class="pure-menu-heading">Tags</li>
+				<li><a href="#" class="people-tags">Sales</a></li>
+				<li><a href="#" class="people-tags"></a></li>
 				<li><br /></li>
 			</ul>
-			<div id="login">{{> loginButtons}}</div>
+			
 		</div>
 	</div>
-	<div id="main">
+	<div id="main" class="pure-u-1">
 		<div class="header">
 			<h1>StarBoard</h1>
 			<h2>Are you in or are you out?</h2>
@@ -46,7 +49,7 @@
 				</div>
 			</div>
 		</div>
-		<div id="footer">
+		<div id="footer" class="pure-u-1">
 			Footer
 		</div>
 	</div>
