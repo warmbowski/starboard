@@ -1,0 +1,24 @@
+/* CSS declarations go here */
+.org_select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: none;
+    /* needed for Firefox: */
+    overflow:hidden;
+    width: 120%;
+}
+
+#in_list {
+	background-color: darkseagreen;
+	height: 100%;
+}
+
+#out_list {
+	background-color: indianred;
+	height: 100%;
+}
+
+#login {
+/*	float: right;*/
+}

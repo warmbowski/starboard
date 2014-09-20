@@ -1,0 +1,66 @@
+<head>
+	<title>StarBoard</title>
+	
+</head>
+
+<body>
+<div id="layout" class="header pure-g">
+	<div id="nav" class="pure-u-4-5">
+		{{> OrganizationSelect}}<div id="login">{{> loginButtons}}</div>
+	</div>
+</div>
+<div id="layout" class="header pure-g">
+	<div id="nav" class="pure-u">
+		<div class="pure-menu pure-menu-open">
+			<ul>
+				<li class="pure-menu-heading">Locations</li>
+				{{> LocationsList}}
+				<li class="pure-menu-heading">Tagged</li>
+				<li><a href="#" class="people-tags">Starred</a></li>
+				<li><a href="#" class="people-tags">Buddies</a></li>
+				<li>
+					<form class="pure-form">
+						<input type="text" placeholder="Add Tag...">
+					</form>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div id="content" class="pure-u-3-4">
+		<div id="in_out_lists" class="pure-g" style="height: 100%">
+			<div id="in_list" class="list pure-u-1-2">
+				In the office
+			</div>
+			<div id="out_list" class="list pure-u-1-2">
+				Out of the office
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+
+<template name="LocationsList">
+	{{#each location}}
+		<li><a href="#">{{location_name}}</a></li>
+	{{/each }}
+	<li>
+		<form class="pure-form">
+			<input type="text" placeholder="Add Location...">
+		</form>
+	</li>
+</template>
+
+<template name="OrganizationSelect">
+	<form>
+		<input type="text" placeholder="{{organization_name}}">
+		<select class="org_select">
+		{{#each organization}}
+			<option>{{organization_name}}</option>
+		{{/each}}
+			<option>Add Organization...</option>
+		</select>
+	</form>
+</template>
+
+
+
