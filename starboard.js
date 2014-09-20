@@ -5,7 +5,7 @@ People = new Meteor.Collection('people');
 if (Meteor.isClient) {
 	Session.setDefault("enable_edit",false)
 	
-	Template.OrganizationSelect.helpers({
+	Template.OrganizationsList.helpers({
 		organization: function(){
 			return Organizations.find().fetch();
 		}
@@ -17,13 +17,13 @@ if (Meteor.isClient) {
 		}
 	});
 
-	Template.OrganizationSelect.events({
+	Template.OrganizationsList.events({
 		'submit form': function(e, tmpl){
 			e.preventDefault();
 			
-			var org_name = tmpl.find('select').value;
+			var org_name = tmpl.find('input').value;
 			
-			Organizations.insert({org_name: organization_name, created_at: new Date});
+			Organizations.insert({organization_name: org_name, created_at: new Date});
 			
 			var form = tmpl.find('form');
 			form.reset();
@@ -34,9 +34,9 @@ if (Meteor.isClient) {
 		'submit form': function(e, tmpl){
 			e.preventDefault();
 			
-			var location_name = tmpl.find('input').value;
+			var loc_name = tmpl.find('input').value;
 			
-			Locations.insert({location_name: location_name, created_at: new Date});
+			Locations.insert({location_name: loc_name, created_at: new Date});
 			
 			var form = tmpl.find('form');
 			form.reset();

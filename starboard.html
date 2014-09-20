@@ -4,15 +4,18 @@
 </head>
 
 <body>
-<div id="layout" class="header pure-g">
-	<div id="nav" class="pure-u-4-5">
-		{{> OrganizationSelect}}<div id="login">{{> loginButtons}}</div>
-	</div>
-</div>
-<div id="layout" class="header pure-g">
-	<div id="nav" class="pure-u">
+
+<div id="layout">
+	<!-- Menu toggle -->
+	<a href="#menu" id="menuLink" class="menu-link">
+		<!-- Hamburger icon -->
+		<span></span>
+	</a>
+	<div id="menu">
 		<div class="pure-menu pure-menu-open">
 			<ul>
+				<li class="pure-menu-heading">Organizations</li>
+				{{> OrganizationsList}}
 				<li class="pure-menu-heading">Locations</li>
 				{{> LocationsList}}
 				<li class="pure-menu-heading">Tagged</li>
@@ -24,15 +27,23 @@
 					</form>
 				</li>
 			</ul>
+			<div id="login">{{> loginButtons}}</div>
 		</div>
 	</div>
-	<div id="content" class="pure-u-3-4">
-		<div id="in_out_lists" class="pure-g" style="height: 100%">
-			<div id="in_list" class="list pure-u-1-2">
-				In the office
-			</div>
-			<div id="out_list" class="list pure-u-1-2">
-				Out of the office
+	<div id="main">
+		<div class="header">
+			<h1>StarBoard</h1>
+			<h2>Are you in or are you out?</h2>
+		</div>
+		<div id="content">
+			<p></p>
+			<div id="in_out_lists" class="pure-g">
+				<div id="in_list" class="list pure-u-1-2">
+					In the office
+				</div>
+				<div id="out_list" class="list pure-u-1-2">
+					Out of the office
+				</div>
 			</div>
 		</div>
 	</div>
@@ -50,17 +61,17 @@
 	</li>
 </template>
 
-<template name="OrganizationSelect">
-	<form>
-		<input type="text" placeholder="{{organization_name}}">
-		<select class="org_select">
-		{{#each organization}}
-			<option>{{organization_name}}</option>
-		{{/each}}
-			<option>Add Organization...</option>
-		</select>
-	</form>
+<template name="OrganizationsList">
+	{{#each organization}}
+		<li><a href="#">{{organization_name}}</a></li>
+	{{/each }}
+	<li>
+		<form class="pure-form">
+			<input type="text" placeholder="Add Organization...">
+		</form>
+	</li>
 </template>
+
 
 
 

@@ -1,13 +1,13 @@
 /* CSS declarations go here */
-.org_select {
+/*.org_select {
     appearance: none;
     -webkit-appearance: none;
     -moz-appearance: none;
-    border: none;
+    border: none;*/
     /* needed for Firefox: */
-    overflow:hidden;
+/*    overflow:hidden;
     width: 120%;
-}
+}*/
 
 #in_list {
 	background-color: darkseagreen;
