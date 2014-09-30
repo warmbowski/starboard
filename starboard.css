@@ -12,13 +12,22 @@
 #in_list {
 	background-color: darkseagreen;
 	height: 100%;
+	opacity: 0.5;
+	margin: 2px;
 }
 
 #out_list {
 	background-color: indianred;
 	height: 100%;
+	opacity: 0.5;
+	margin: 2px;
 }
 
 #login {
 /*	float: right;*/
+}
+
+.content-subhead {
+	font-weight: bold;
+	color: #fff;
 }

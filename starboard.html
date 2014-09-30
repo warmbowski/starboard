@@ -7,12 +7,14 @@
 
 <div id="layout" class="pure-g">
 	<div id="header" class="pure-u-1">
-	<!-- Menu toggle -->
-	<a href="#menu" id="menuLink" class="menu-link">
-		<!-- Hamburger icon -->
-		<span></span>
-	</a>
-		<div id="login" class= "pure-u-1" style="text-align: right ">{{> loginButtons}}</div>
+		<!-- Menu toggle -->
+		<a href="#menu" id="menuLink" class="menu-link">
+			<!-- Hamburger icon -->
+			<span></span>
+		</a>
+		<div id="login" class= "pure-u-1" style="text-align: right ">
+			{{> loginButtons}}
+		</div>
 	</div>
 	<div id="menu" class="pure-u">
 		<div class="pure-menu pure-menu-open">
@@ -41,19 +43,24 @@
 		<div id="content">
 			<p></p>
 			<div id="in_out_lists" class="pure-g">
-				<div id="in_list" class="list pure-u-1-2">
-					<h3 class="content-subhead">In the office</h3>
+				<div class="list pure-u-1-2">
+					<div id="in_list">
+						<h3 class="content-subhead">In the office</h3>
+					</div>
 				</div>
-				<div id="out_list" class="list pure-u-1-2">
-					<h3 class="content-subhead">Out of the office</h3>
+				<div class="list pure-u-1-2">
+					<div id="out_list">
+						<h3 class="content-subhead">Out of the office</h3>
+					</div>
 				</div>
 			</div>
 		</div>
-		<div id="footer" class="pure-u-1">
-			Footer
-		</div>
+	</div>
+	<div id="footer" class="pure-u-1">
+		Footer
 	</div>
 </div>
+	
 </body>
 
 <template name="LocationsList">
