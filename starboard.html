@@ -21,12 +21,7 @@
 			<ul>
 				<li class="pure-menu-heading">Bookmarks</li>
 				<li><br /></li>
-				<li class="pure-menu-heading">Organizations</li>
 				{{> OrganizationsList}}
-				<li><br /></li>
-				<li class="pure-menu-heading">Locations</li>
-				{{> LocationsList}}
-				<li><br /></li>
 				<li class="pure-menu-heading">Tags</li>
 				<li><a href="#" class="people-tags">Sales</a></li>
 				<li><a href="#" class="people-tags"></a></li>
@@ -35,20 +30,19 @@
 			
 		</div>
 	</div>
-	<div id="main" class="pure-u-1">
+	<div id="main" class="pure-u-1" style="height: 700px">
 		<div class="header">
 			<h1>StarBoard</h1>
 			<h2>Are you in or are you out?</h2>
 		</div>
-		<div id="content">
-			<p></p>
-			<div id="in_out_lists" class="pure-g">
-				<div class="list pure-u-1-2">
+		<div id="content" style="height: 100%">
+			<div id="in_out_lists" class="pure-g" style="height: 100%">
+				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="in_list">
 						<h3 class="content-subhead">In the office</h3>
 					</div>
 				</div>
-				<div class="list pure-u-1-2">
+				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="out_list">
 						<h3 class="content-subhead">Out of the office</h3>
 					</div>
@@ -63,26 +57,28 @@
 	
 </body>
 
-<template name="LocationsList">
-	{{#each location}}
-		<li><a href="#">{{location_name}}</a></li>
-	{{/each }}
-	<li>
-		<form class="pure-form">
-			<input type="text" placeholder="Add Location...">
-		</form>
-	</li>
-</template>
-
 <template name="OrganizationsList">
-	{{#each organization}}
-		<li><a href="#">{{organization_name}}</a></li>
-	{{/each }}
-	<li>
-		<form class="pure-form">
-			<input type="text" placeholder="Add Organization...">
-		</form>
-	</li>
+	{{#with organization}}
+		<li class="pure-menu-heading">Organizations</li>
+		<li id="{{_id}}" class="{{selected}}"><a href="#">{{organization_name}}</a></li>
+		<li>
+			<form id="addOrg" class="pure-form">
+				<input type="text" placeholder="Add Organization...">
+			</form>
+		</li>
+		<li><br /></li>
+	
+		<li class="pure-menu-heading">Locations</li>
+		{{#each locationInOrg}}
+			<li id="{{_id}}" class="{{selected}}"><a href="#">{{location_name}}</a></li>
+		{{/each }}
+		<li>
+			<form id="addLoc" class="pure-form">
+				<input type="text" placeholder="Add Location...">
+			</form>
+		</li>
+		<li><br /></li>
+	{{/with}}
 </template>
 
 
