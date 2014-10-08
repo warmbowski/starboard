@@ -40,11 +40,13 @@
 				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="in_list">
 						<h3 class="content-subhead">In the office</h3>
+						{{> InList}}
 					</div>
 				</div>
 				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="out_list">
 						<h3 class="content-subhead">Out of the office</h3>
+						{{> OutList}}
 					</div>
 				</div>
 			</div>
@@ -81,6 +83,13 @@
 	{{/with}}
 </template>
 
+<template name="InList">
+	{{#each logins}}
+		{{_id}}
+	{{/each}}
+</template>
 
-
+<template name="OutList">
+	
+</template>
 

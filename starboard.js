@@ -17,6 +17,12 @@ if (Meteor.isClient) {
 		}
 	});
 
+	Template.OutList.helpers({
+		logins: function(){
+			return Meteor.users.findOne();
+		}
+	});
+
 	Template.OrganizationsList.events({
 		'click a': function(e, tmpl){
 			console.log(this._id)
@@ -45,6 +51,7 @@ if (Meteor.isClient) {
 			form.reset();
 		}
 	});
+	
 }
 
 if (Meteor.isServer) {
