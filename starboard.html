@@ -18,16 +18,10 @@
 	</div>
 	<div id="menu" class="pure-u">
 		<div class="pure-menu pure-menu-open">
-			<ul>
-				<li class="pure-menu-heading">Bookmarks</li>
-				<li><br /></li>
-				{{> OrganizationsList}}
-				<li class="pure-menu-heading">Tags</li>
-				<li><a href="#" class="people-tags">Sales</a></li>
-				<li><a href="#" class="people-tags"></a></li>
-				<li><br /></li>
-			</ul>
-			
+			{{> BookmarksList}}
+			{{> OrganizationsList}}
+			{{> LocationsList}}
+			{{> TagsList}}
 		</div>
 	</div>
 	<div id="main" class="pure-u-1" style="height: 700px">
@@ -40,13 +34,13 @@
 				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="in_list">
 						<h3 class="content-subhead">In the office</h3>
-						{{> InList}}
+						{{> InOutLists presence="in"}}
 					</div>
 				</div>
 				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="out_list">
 						<h3 class="content-subhead">Out of the office</h3>
-						{{> OutList}}
+						{{> InOutLists}}
 					</div>
 				</div>
 			</div>
@@ -59,20 +53,33 @@
 	
 </body>
 
+<template name="BookmarksList">
+	<ul>
+		<li class="pure-menu-heading">Bookmarks</li>
+		<li><br /></li>
+	</ul>
+</template>
+
 <template name="OrganizationsList">
-	{{#with organization}}
+	<ul>
 		<li class="pure-menu-heading">Organizations</li>
-		<li id="{{_id}}" class="{{selected}}"><a href="#">{{organization_name}}</a></li>
+		{{#each organization}}
+			<li id="{{_id}}" class="{{orgSelected}}"><a href="#">{{organization_name}}</a></li>
+		{{/each}}
 		<li>
 			<form id="addOrg" class="pure-form">
 				<input type="text" placeholder="Add Organization...">
 			</form>
 		</li>
 		<li><br /></li>
-	
+	</ul>
+</template>
+
+<template name="LocationsList">
+	<ul>
 		<li class="pure-menu-heading">Locations</li>
 		{{#each locationInOrg}}
-			<li id="{{_id}}" class="{{selected}}"><a href="#">{{location_name}}</a></li>
+			<li id="{{_id}}" class="{{locSelected}}"><a href="#">{{location_name}}</a></li>
 		{{/each }}
 		<li>
 			<form id="addLoc" class="pure-form">
@@ -80,16 +87,23 @@
 			</form>
 		</li>
 		<li><br /></li>
-	{{/with}}
+	</ul>
 </template>
 
-<template name="InList">
+<template name="TagsList">
+	<ul>
+		<li class="pure-menu-heading">Tags</li>
+		<li><a href="#" class="people-tags">Sales</a></li>
+		<li><a href="#" class="people-tags"></a></li>
+		<li><br /></li>
+	</ul>
+</template>
+
+<template name="InOutLists">
+	<ul class="in-out-list">
 	{{#each logins}}
-		{{_id}}
+		<li class="card"> ID={{_id}} </li>
 	{{/each}}
-</template>
-
-<template name="OutList">
-	
+	</ul>
 </template>
 

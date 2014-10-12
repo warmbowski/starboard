@@ -23,11 +23,33 @@
 	margin: 2px;
 }
 
-#login {
-/*	float: right;*/
-}
-
 .content-subhead {
 	font-weight: bold;
 	color: #fff;
+}
+
+ul.in-out-list {
+	min-height: 50px;
+	list-style-type: none;
+}
+
+.card {
+    cursor: grab;
+	cursor: moz-grab;
+	cursor: -webkit-grab;
+    border-radius: 3px ;
+    border: 1px solid #666 ;
+    margin: 5px ;
+    padding: 5px ;
+    word-wrap: break-word;
+	color: black;
+	font-size: 20px;
+}
+
+.card-rotate {
+    -webkit-transform:rotate(2deg);
+    -o-transform:rotate(2deg);
+    -ms-transform:rotate(2deg);
+    -moz-transform:rotate(2deg);
+    transform:rotate(2deg);
 }

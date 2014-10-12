@@ -3,32 +3,45 @@ Locations = new Meteor.Collection('locations');
 People = new Meteor.Collection('people');
 
 if (Meteor.isClient) {
-	Session.setDefault("selectedItem","")
+	
+	Session.setDefault("selectedOrg",null);
+	Session.setDefault("selectedLoc",null);
+	
 	
 	Template.OrganizationsList.helpers({
 		organization: function(){
-			return Organizations.findOne();
+			return Organizations.find();
 		},
+		
+		orgSelected: function(){
+			return Session.equals("selectedOrg", this._id)?"pure-menu-selected":"";
+		}
+	});
+	
+	Template.LocationsList.helpers({
 		locationInOrg: function(){
-			return Locations.find({organization_id: this._id});
+			var selected_org_id = Session.get("selectedOrg");
+			
+			return Locations.find({organization_id: selected_org_id});
 		},
-		selected: function(){
-			return Session.equals("selectedItem", this._id)?"pure-menu-select":"pure-menu-select";
+		
+		locSelected: function(){
+			return Session.equals("selectedLoc", this._id)?"pure-menu-selected":"";
 		}
 	});
 
-	Template.OutList.helpers({
+	Template.InOutLists.helpers({
 		logins: function(){
-			return Meteor.users.findOne();
+			return Meteor.users.find();
 		}
 	});
 
 	Template.OrganizationsList.events({
 		'click a': function(e, tmpl){
-			console.log(this._id)
-			Session.set("selectedItem", this._id);
-			// e.currentTarget.addClass('pure-menu-selected');
+			e.preventDefault();
+			Session.set("selectedOrg", this._id);
 		},
+		
 		'submit form#addOrg': function(e, tmpl){
 			e.preventDefault();
 			
@@ -38,20 +51,27 @@ if (Meteor.isClient) {
 			
 			var form = tmpl.find('form');
 			form.reset();
+		}
+	});
+	
+	Template.LocationsList.events({
+		'click a': function(e, tmpl){
+			e.preventDefault();
+			Session.set("selectedLoc", this._id);
 		},
+		
 		'submit form#addLoc': function(e, tmpl){
 			e.preventDefault();
 			
 			var loc_name = tmpl.find('input').value;
-			var current_org_id = tmpl.find('li.selected_org')
+			var selected_org_id = Session.get("selectedOrg");
 			
-			Locations.insert({location_name: loc_name, organization_id: org_id, created_at: new Date, created_by: Meteor.userId()});
+			Locations.insert({location_name: loc_name, organization_id: selected_org_id, created_at: new Date, created_by: Meteor.userId()});
 			
 			var form = tmpl.find('form');
 			form.reset();
 		}
 	});
-	
 }
 
 if (Meteor.isServer) {
