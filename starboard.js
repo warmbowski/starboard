@@ -10,7 +10,7 @@ if (Meteor.isClient) {
 			return Organizations.findOne();
 		},
 		locationInOrg: function(){
-			return Locations.find({organization_id: this._id}).fetch();
+			return Locations.find({organization_id: this._id});
 		},
 		selected: function(){
 			return Session.equals("selectedItem", this._id)?"pure-menu-select":"pure-menu-select";
