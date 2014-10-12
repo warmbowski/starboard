@@ -4,8 +4,13 @@ People = new Meteor.Collection('people');
 
 if (Meteor.isClient) {
 	
+	Meteor.subscribe("organizationData");
+	Meteor.subscribe("locationData");
+	Meteor.subscribe("allUserData");
+	
 	Session.setDefault("selectedOrg",null);
 	Session.setDefault("selectedLoc",null);
+	Session.setDefault("editMode", false);
 	
 	
 	Template.OrganizationsList.helpers({
@@ -15,6 +20,15 @@ if (Meteor.isClient) {
 		
 		orgSelected: function(){
 			return Session.equals("selectedOrg", this._id)?"pure-menu-selected":"";
+		},
+		
+		editMode: function(){
+			return Session.get("editMode");
+		},
+		
+		isCreator: function(){
+			console.log(this);
+			return this.created_by == Meteor.userID()?true:false;
 		}
 	});
 	
@@ -27,6 +41,10 @@ if (Meteor.isClient) {
 		
 		locSelected: function(){
 			return Session.equals("selectedLoc", this._id)?"pure-menu-selected":"";
+		},
+		
+		editMode: function(){
+			return Session.get("editMode");
 		}
 	});
 
@@ -42,6 +60,20 @@ if (Meteor.isClient) {
 			Session.set("selectedOrg", this._id);
 		},
 		
+		'click i.fa-close': function(e, tmpl){
+			Organizations.remove({_id: this._id});
+			Session.set("editMode", false);
+		},
+		
+		'dblclick li.pure-menu-heading': function(e, tmpl){
+			e.preventDefault();
+			if (Session.get("editMode")){
+				Session.set("editMode", false);
+			} else {
+				Session.set("editMode", true);
+			}
+		},
+		
 		'submit form#addOrg': function(e, tmpl){
 			e.preventDefault();
 			
@@ -51,6 +83,7 @@ if (Meteor.isClient) {
 			
 			var form = tmpl.find('form');
 			form.reset();
+			Session.set("editMode", false);
 		}
 	});
 	
@@ -58,6 +91,15 @@ if (Meteor.isClient) {
 		'click a': function(e, tmpl){
 			e.preventDefault();
 			Session.set("selectedLoc", this._id);
+		},
+		
+		'dblclick li.pure-menu-heading': function(e, tmpl){
+			e.preventDefault();
+			if (Session.get("editMode")){
+				Session.set("editMode", false);
+			} else {
+				Session.set("editMode", true);
+			}
 		},
 		
 		'submit form#addLoc': function(e, tmpl){
@@ -70,11 +112,28 @@ if (Meteor.isClient) {
 			
 			var form = tmpl.find('form');
 			form.reset();
+			Session.set("editMode", false);
 		}
 	});
 }
 
 if (Meteor.isServer) {
+	
+	Meteor.publish("organizationData", function () {
+		return Organizations.find();
+	});
+	
+	Meteor.publish("locationData", function () {
+		return Locations.find();
+	});
+	
+	Meteor.publish("allUserData", function () {
+		return Meteor.users.find({}, {fields: {
+		      '_id': true,
+		      'emails': true
+		}});
+	});
+			
   Meteor.startup(function () {
     // code to run on server at startup
   });

@@ -33,13 +33,13 @@
 			<div id="in_out_lists" class="pure-g" style="height: 100%">
 				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="in_list">
-						<h3 class="content-subhead">In the office</h3>
+						<h1 class="content-subhead"><i class="fa fa-sign-in"> IN </i></h1>
 						{{> InOutLists presence="in"}}
 					</div>
 				</div>
 				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="out_list">
-						<h3 class="content-subhead">Out of the office</h3>
+						<h1 class="content-subhead"><i class="fa fa-sign-out"> OUT </i></h1>
 						{{> InOutLists}}
 					</div>
 				</div>
@@ -64,13 +64,20 @@
 	<ul>
 		<li class="pure-menu-heading">Organizations</li>
 		{{#each organization}}
-			<li id="{{_id}}" class="{{orgSelected}}"><a href="#">{{organization_name}}</a></li>
+			<li id="{{_id}}" class="{{orgSelected}}">
+				<a href="#">
+					{{#if editMode}}<i class="fa fa-close"></i>{{/if}}
+					{{organization_name}}
+				</a>
+			</li>
 		{{/each}}
+		{{#if editMode}}
 		<li>
 			<form id="addOrg" class="pure-form">
 				<input type="text" placeholder="Add Organization...">
 			</form>
 		</li>
+		{{/if}}
 		<li><br /></li>
 	</ul>
 </template>
@@ -79,7 +86,12 @@
 	<ul>
 		<li class="pure-menu-heading">Locations</li>
 		{{#each locationInOrg}}
-			<li id="{{_id}}" class="{{locSelected}}"><a href="#">{{location_name}}</a></li>
+			<li id="{{_id}}" class="{{locSelected}}">
+				<a href="#">
+					{{#if editMode}}<i class="fa fa-close"></i>{{/if}}
+					{{location_name}}
+				</a>
+			</li>
 		{{/each }}
 		<li>
 			<form id="addLoc" class="pure-form">
@@ -102,7 +114,7 @@
 <template name="InOutLists">
 	<ul class="in-out-list">
 	{{#each logins}}
-		<li class="card"> ID={{_id}} </li>
+		<li class="card"> {{emails}}<br />{{_id}} </li>
 	{{/each}}
 	</ul>
 </template>
