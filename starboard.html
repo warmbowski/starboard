@@ -114,7 +114,7 @@
 <template name="InOutLists">
 	<ul class="in-out-list">
 	{{#each logins}}
-		<li class="card"> {{emails}}<br />{{_id}} </li>
+		<li class="card"> {{emails.[0].address}}<br /><sup>{{_id}}</sup> </li>
 	{{/each}}
 	</ul>
 </template>
