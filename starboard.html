@@ -34,13 +34,13 @@
 				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="in_list">
 						<h1 class="content-subhead"><i class="fa fa-sign-in"> IN </i></h1>
-						{{> InOutLists presence="in"}}
+						{{> InLists}}
 					</div>
 				</div>
 				<div class="list pure-u-1-2" style="height: 100%">
 					<div id="out_list">
 						<h1 class="content-subhead"><i class="fa fa-sign-out"> OUT </i></h1>
-						{{> InOutLists}}
+						{{> OutLists}}
 					</div>
 				</div>
 			</div>
@@ -111,11 +111,18 @@
 	</ul>
 </template>
 
-<template name="InOutLists">
+<template name="InLists">
 	<ul class="in-out-list">
-	{{#each logins}}
-		<li class="card"> {{emails.[0].address}}<br /><sup>{{_id}}</sup> </li>
+	{{#each inList}}
+		<li class="card">{{profile.presence}} - {{emails.[0].address}}<br /><sup>{{_id}}</sup> </li>
 	{{/each}}
 	</ul>
 </template>
 
+<template name="OutLists">
+	<ul class="in-out-list">
+	{{#each outList}}
+		<li class="card">{{profile.presence}} - {{emails.[0].address}}<br /><sup>{{_id}}</sup> </li>
+	{{/each}}
+	</ul>
+</template>

@@ -47,13 +47,19 @@ if (Meteor.isClient) {
 			return Session.get("editMode");
 		}
 	});
-
-	Template.InOutLists.helpers({
-		logins: function(){
-			return Meteor.users.find();
+	
+	Template.InLists.helpers({
+		inList: function(){
+			return Meteor.users.find({ "profile.presence": "in" });
 		}
 	});
-
+		
+	Template.OutLists.helpers({
+		outList: function(){
+			return Meteor.users.find({ "profile.presence": {$not: "in" }});
+		}
+	});
+	
 	Template.OrganizationsList.events({
 		'click a': function(e, tmpl){
 			e.preventDefault();
@@ -119,6 +125,15 @@ if (Meteor.isClient) {
 
 if (Meteor.isServer) {
 	
+	Accounts.onCreateUser(function(options, user) {
+		user.profile = options.profile ? options.profile : {};
+		user.profile.presence = 'out';
+		user.profile.current_location = null;
+		user.profile.subscribed_orgs = [];
+		
+		return user;
+	});
+	
 	Meteor.publish("organizationData", function () {
 		if(!this.userId) return null;
 		return Organizations.find();
@@ -133,7 +148,8 @@ if (Meteor.isServer) {
 		if(!this.userId) return null;
 		return Meteor.users.find({}, {fields: {
 		      '_id': true,
-		      'emails': true
+		      'emails': true,
+			  'profile': true,
 		}});
 	});
 			
