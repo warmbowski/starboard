@@ -33,6 +33,10 @@ ul.in-out-list {
 	list-style-type: none;
 }
 
+.this-is-me {
+	background-color: lightyellow;
+}
+
 .card {
     cursor: grab;
 	cursor: moz-grab;

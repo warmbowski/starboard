@@ -29,7 +29,7 @@ if (Meteor.isClient) {
 		
 		isCreator: function(){
 			console.log(this);
-			return this.created_by == Meteor.userID()?true:false;
+			return this.created_by == Meteor.userId() ? true:false;
 		}
 	});
 	
@@ -52,12 +52,20 @@ if (Meteor.isClient) {
 	Template.InLists.helpers({
 		inList: function(){
 			return Meteor.users.find({ "profile.presence": "in" });
+		},
+		
+		isMeClass: function(){
+			return this._id == Meteor.userId() ? 'this-is-me':'';
 		}
 	});
 		
 	Template.OutLists.helpers({
 		outList: function(){
 			return Meteor.users.find({ "profile.presence": {$not: "in" }});
+		},
+		
+		isMeClass: function(){
+			return this._id == Meteor.userId() ? 'this-is-me':'';
 		}
 	});
 	
@@ -132,7 +140,8 @@ if (Meteor.isClient) {
 		}
 	});
 	
-	Template.InList.rendered = function(){
+	Template.InLists.rendered = function(){
+		
 		this.$('.in-out-list').sortable({
 			connectWith: '.in-out-list',
 			accept: 'card',
@@ -144,10 +153,41 @@ if (Meteor.isClient) {
 			scrollSensitivity: 10,
 			scrollSpeed: 20,
 			start: function(e,ui){
-				
+				$(this).data().uiSortable.currentItem.addClass("card-rotate");
 			},
 			stop: function(e,ui){
-				
+				$(this).data().uiSortable.currentItem.removeClass("card-rotate");
+			},
+			receive: function(e,ui){
+				var receivedId = ui.item.attr("id");
+				console.log(receivedId);
+				Meteor.users.update({_id: receivedId}, {$set: {'profile.presence': 'in'}});
+			}
+		})
+	};
+	
+	Template.OutLists.rendered = function(){
+		
+		this.$('.in-out-list').sortable({
+			connectWith: '.in-out-list',
+			accept: 'card',
+			revert: 'invalid',
+			placeholder: 'card-placeholder',
+			helper: 'original',
+			opacity: '0.7',
+			scroll: true,
+			scrollSensitivity: 10,
+			scrollSpeed: 20,
+			start: function(e,ui){
+				$(this).data().uiSortable.currentItem.addClass("card-rotate");
+			},
+			stop: function(e,ui){
+				$(this).data().uiSortable.currentItem.removeClass("card-rotate");
+			},
+			receive: function(e,ui){
+				var receivedId = ui.item.attr("id");
+				console.log(receivedId);
+				Meteor.users.update({_id: receivedId}, {$set: {'profile.presence': 'out'}});
 			}
 		})
 	};
