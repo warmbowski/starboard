@@ -9,3 +9,5 @@ mrt:purecss
 accounts-password
 accounts-ui
 linto:fontawesome
+mrt:jquery-ui-sortable
+
