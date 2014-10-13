@@ -10,7 +10,8 @@ if (Meteor.isClient) {
 	
 	Session.setDefault("selectedOrg",null);
 	Session.setDefault("selectedLoc",null);
-	Session.setDefault("editMode", false);
+	Session.setDefault("editOrgs", false);
+	Session.setDefault("editLocs", false);
 	
 	
 	Template.OrganizationsList.helpers({
@@ -22,8 +23,8 @@ if (Meteor.isClient) {
 			return Session.equals("selectedOrg", this._id)?"pure-menu-selected":"";
 		},
 		
-		editMode: function(){
-			return Session.get("editMode");
+		editOrgs: function(){
+			return Session.get("editOrgs");
 		},
 		
 		isCreator: function(){
@@ -43,8 +44,8 @@ if (Meteor.isClient) {
 			return Session.equals("selectedLoc", this._id)?"pure-menu-selected":"";
 		},
 		
-		editMode: function(){
-			return Session.get("editMode");
+		editLocs: function(){
+			return Session.get("editLocs");
 		}
 	});
 	
@@ -68,15 +69,15 @@ if (Meteor.isClient) {
 		
 		'click i.fa-close': function(e, tmpl){
 			Organizations.remove({_id: this._id});
-			Session.set("editMode", false);
+			Session.set("editOrgs", false);
 		},
 		
-		'dblclick li.pure-menu-heading': function(e, tmpl){
+		'click i.fa-pencil-square-o': function(e, tmpl){
 			e.preventDefault();
-			if (Session.get("editMode")){
-				Session.set("editMode", false);
+			if (Session.get("editOrgs")){
+				Session.set("editOrgs", false);
 			} else {
-				Session.set("editMode", true);
+				Session.set("editOrgs", true);
 			}
 		},
 		
@@ -85,11 +86,15 @@ if (Meteor.isClient) {
 			
 			var org_name = tmpl.find('input').value;
 			
-			Organizations.insert({organization_name: org_name, created_at: new Date, created_by: Meteor.userId()});
+			Organizations.insert({
+				organization_name: org_name, 
+				created_at: new Date, 
+				created_by: Meteor.userId()
+			});
 			
 			var form = tmpl.find('form');
 			form.reset();
-			Session.set("editMode", false);
+			Session.set("editOrgs", false);
 		}
 	});
 	
@@ -99,12 +104,12 @@ if (Meteor.isClient) {
 			Session.set("selectedLoc", this._id);
 		},
 		
-		'dblclick li.pure-menu-heading': function(e, tmpl){
+		'click i.fa-pencil-square-o': function(e, tmpl){
 			e.preventDefault();
-			if (Session.get("editMode")){
-				Session.set("editMode", false);
+			if (Session.get("editLocs")){
+				Session.set("editLocs", false);
 			} else {
-				Session.set("editMode", true);
+				Session.set("editLocs", true);
 			}
 		},
 		
@@ -114,13 +119,38 @@ if (Meteor.isClient) {
 			var loc_name = tmpl.find('input').value;
 			var selected_org_id = Session.get("selectedOrg");
 			
-			Locations.insert({location_name: loc_name, organization_id: selected_org_id, created_at: new Date, created_by: Meteor.userId()});
+			Locations.insert({
+				location_name: loc_name, 
+				organization_id: selected_org_id, 
+				created_at: new Date, 
+				created_by: Meteor.userId()
+			});
 			
 			var form = tmpl.find('form');
 			form.reset();
-			Session.set("editMode", false);
+			Session.set("editLocs", false);
 		}
 	});
+	
+	Template.InList.rendered = function(){
+		this.$('.in-out-list').sortable({
+			connectWith: '.in-out-list',
+			accept: 'card',
+			revert: 'invalid',
+			placeholder: 'card-placeholder',
+			helper: 'original',
+			opacity: '0.7',
+			scroll: true,
+			scrollSensitivity: 10,
+			scrollSpeed: 20,
+			start: function(e,ui){
+				
+			},
+			stop: function(e,ui){
+				
+			}
+		})
+	};
 }
 
 if (Meteor.isServer) {

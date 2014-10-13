@@ -55,23 +55,23 @@
 
 <template name="BookmarksList">
 	<ul>
-		<li class="pure-menu-heading">Bookmarks</li>
+		<li class="pure-menu-heading">Bookmarks <i class="fa fa-pencil-square-o"></i></li>
 		<li><br /></li>
 	</ul>
 </template>
 
 <template name="OrganizationsList">
 	<ul>
-		<li class="pure-menu-heading">Organizations</li>
+		<li class="pure-menu-heading">Organizations <i class="fa fa-pencil-square-o"></i></li>
 		{{#each organization}}
 			<li id="{{_id}}" class="{{orgSelected}}">
 				<a href="#">
-					{{#if editMode}}<i class="fa fa-close"></i>{{/if}}
+					{{#if editOrgs}}<i class="fa fa-close"></i>{{/if}}
 					{{organization_name}}
 				</a>
 			</li>
 		{{/each}}
-		{{#if editMode}}
+		{{#if editOrgs}}
 		<li>
 			<form id="addOrg" class="pure-form">
 				<input type="text" placeholder="Add Organization...">
@@ -84,27 +84,29 @@
 
 <template name="LocationsList">
 	<ul>
-		<li class="pure-menu-heading">Locations</li>
+		<li class="pure-menu-heading">Locations <i class="fa fa-pencil-square-o"></i></li>
 		{{#each locationInOrg}}
 			<li id="{{_id}}" class="{{locSelected}}">
 				<a href="#">
-					{{#if editMode}}<i class="fa fa-close"></i>{{/if}}
+					{{#if editLocs}}<i class="fa fa-close"></i>{{/if}}
 					{{location_name}}
 				</a>
 			</li>
 		{{/each }}
+		{{#if editLocs}}
 		<li>
 			<form id="addLoc" class="pure-form">
 				<input type="text" placeholder="Add Location...">
 			</form>
 		</li>
+		{{/if}}
 		<li><br /></li>
 	</ul>
 </template>
 
 <template name="TagsList">
 	<ul>
-		<li class="pure-menu-heading">Tags</li>
+		<li class="pure-menu-heading">Tags <i class="fa fa-pencil-square-o"></i></li>
 		<li><a href="#" class="people-tags">Sales</a></li>
 		<li><a href="#" class="people-tags"></a></li>
 		<li><br /></li>
