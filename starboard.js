@@ -82,10 +82,12 @@ if (Meteor.isClient) {
 		
 		'click i.fa-pencil-square-o': function(e, tmpl){
 			e.preventDefault();
-			if (Session.get("editOrgs")){
-				Session.set("editOrgs", false);
-			} else {
-				Session.set("editOrgs", true);
+			if (Meteor.userId()) {
+				if (Session.get("editOrgs")){
+					Session.set("editOrgs", false);
+				} else {
+					Session.set("editOrgs", true);
+				}
 			}
 		},
 		
@@ -114,10 +116,12 @@ if (Meteor.isClient) {
 		
 		'click i.fa-pencil-square-o': function(e, tmpl){
 			e.preventDefault();
-			if (Session.get("editLocs")){
-				Session.set("editLocs", false);
-			} else {
-				Session.set("editLocs", true);
+			if (Meteor.userId()) {
+				if (Session.get("editLocs")){
+					Session.set("editLocs", false);
+				} else {
+					Session.set("editLocs", true);
+				}
 			}
 		},
 		
