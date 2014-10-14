@@ -116,7 +116,9 @@
 <template name="InLists">
 	<ul class="in-out-list">
 	{{#each inList}}
-		<li id="{{_id}}" class="card {{isMeClass}}">{{profile.presence}} - {{emails.[0].address}}<br /><sup>{{_id}}</sup> </li>
+		<li id="{{_id}}" class="card pure-button pure-u-1-2 pure-button-primary {{isMeClass}}">
+			{{emails.[0].address}}<br /><sup>{{_id}}</sup>
+		</li>
 	{{/each}}
 	</ul>
 </template>
@@ -124,7 +126,9 @@
 <template name="OutLists">
 	<ul class="in-out-list">
 	{{#each outList}}
-		<li id="{{_id}}" class="card {{isMeClass}}">{{profile.presence}} - {{emails.[0].address}}<br /><sup>{{_id}}</sup> </li>
+		<li id="{{_id}}" class="card pure-button pure-u-1-2 pure-button-primary {{isMeClass}}">
+			{{emails.[0].address}}<br /><sup>{{_id}}</sup>
+		</li>
 	{{/each}}
 	</ul>
 </template>

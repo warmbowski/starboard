@@ -34,28 +34,28 @@ ul.in-out-list {
 }
 
 .this-is-me {
-	background-color: lightyellow;
+	
+	background-color: lightblue;
+	
 }
 
 .card {
     cursor: grab;
 	cursor: moz-grab;
 	cursor: -webkit-grab;
-    border-radius: 3px ;
-    border: 1px solid #666 ;
-    margin: 5px ;
-    padding: 5px ;
-    word-wrap: break-word;
+    border-radius: 5px ;
+    border: 3px solid #FCB326;
+	box-shadow: 0 2px 1px rgba(0, 0, 0, 0.8), inset 0 2px 1px rgba(0, 0, 0, 0.8);
 	color: black;
-	font-size: 20px;
+	font-size: 16px;
 }
 
 .card-rotate {
-    -webkit-transform:rotate(2deg);
-    -o-transform:rotate(2deg);
-    -ms-transform:rotate(2deg);
-    -moz-transform:rotate(2deg);
-    transform:rotate(2deg);
+    -webkit-transform:rotate(3deg);
+    -o-transform:rotate(3deg);
+    -ms-transform:rotate(3deg);
+    -moz-transform:rotate(3deg);
+    transform:rotate(3deg);
 }
 
 .rotate-text-90 {
