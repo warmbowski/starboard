@@ -1,6 +1,11 @@
 <head>
 	<title>StarBoard</title>
-	
+	<!--[if lte IE 8]>
+	    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-old-ie-min.css">
+	<![endif]-->
+	<!--[if gt IE 8]><!-->
+	    <link rel="stylesheet" href="http://yui.yahooapis.com/pure/0.5.0/grids-responsive-min.css">
+	<!--<![endif]-->
 </head>
 
 <body>
@@ -31,13 +36,13 @@
 		</div>
 		<div id="content" style="height: 100%">
 			<div id="in_out_lists" class="pure-g" style="height: 100%">
-				<div class="list pure-u-1-2" style="height: 100%">
+				<div class="list pure-u-1 pure-u-sm-1-2" style="height: 100%">
 					<div id="in_list">
 						<h1 class="content-subhead"><i class="fa fa-sign-in"> IN </i></h1>
 						{{> InLists}}
 					</div>
 				</div>
-				<div class="list pure-u-1-2" style="height: 100%">
+				<div class="list pure-u-1 pure-u-sm-1-2" style="height: 100%">
 					<div id="out_list">
 						<h1 class="content-subhead"><i class="fa fa-sign-out"> OUT </i></h1>
 						{{> OutLists}}
@@ -116,7 +121,7 @@
 <template name="InLists">
 	<ul class="in-out-list">
 	{{#each inList}}
-		<li id="{{_id}}" class="card pure-button pure-u-1-2 pure-button-primary {{isMeClass}}">
+		<li id="{{_id}}" class="card pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 pure-button pure-button-primary {{isMeClass}}">
 			{{emails.[0].address}}<br /><sup>{{_id}}</sup>
 		</li>
 	{{/each}}
@@ -126,7 +131,7 @@
 <template name="OutLists">
 	<ul class="in-out-list">
 	{{#each outList}}
-		<li id="{{_id}}" class="card pure-button pure-u-1-2 pure-button-primary {{isMeClass}}">
+		<li id="{{_id}}" class="card pure-u-1 pure-u-lg-1-2 pure-u-xl-1-4 pure-button pure-button-primary {{isMeClass}}">
 			{{emails.[0].address}}<br /><sup>{{_id}}</sup>
 		</li>
 	{{/each}}

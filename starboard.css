@@ -31,6 +31,7 @@
 ul.in-out-list {
 	min-height: 50px;
 	list-style-type: none;
+	padding: 0.5em 2.5em 0.5em 0.5em;
 }
 
 .this-is-me {
