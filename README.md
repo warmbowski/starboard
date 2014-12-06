@@ -6,13 +6,11 @@ This is a reactive web based status board written in Meteor.js. It is used for k
 http://starboard.meteor.com/
 
 Using characters from The Office:
-login: `{{first-name}}@dunder-mifflin.io`
-pass: `{{last-name}}`
-
+* login: `{{first-name}}@dunder-mifflin.io`
+* pass: `{{last-name}}`
 -or-
-
-login: `{{first-name}}@wernham-hogg.io`
-pass: `{{last-name}}`
+* login: `{{first-name}}@wernham-hogg.io`
+* pass: `{{last-name}}`
 
 
 (add 1's to bring pass to 6 characters, if too short)
