@@ -40,7 +40,7 @@ Template.LocationsList.helpers({
 
 Template.InLists.helpers({
   inList: function(){
-    return Meteor.users.find({ "profile.presence": "in" });
+    return Meteor.users.find({ "profile.presence": "in" }, {sort: {"emails.0.address": 1}});
   },
 
   isMeClass: function(){
@@ -50,7 +50,7 @@ Template.InLists.helpers({
 
 Template.OutLists.helpers({
   outList: function(){
-    return Meteor.users.find({ "profile.presence": {$not: "in" }});
+    return Meteor.users.find({ "profile.presence": {$not: "in" }}, {sort: {"emails.0.address": 1}});
   },
 
   isMeClass: function(){
